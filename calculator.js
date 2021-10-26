@@ -57,7 +57,7 @@ function update() {
 function calculateMonthlyPayment(values) {
   //p = principle, i = periodic interest (apr/12), n = total payments (years*12)
   let p = values.amount;
-  let i = values.rate / 12;
+  let i = values.rate / 100 / 12;
   let n = values.years * 12;
   let numerator = p * i;
   let parens = 1 + i;
