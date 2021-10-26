@@ -4,7 +4,7 @@ window.addEventListener('DOMContentLoaded', function() {
     setupIntialValues();
     form.addEventListener("submit", function(e) {
       e.preventDefault();
-      update();
+      updateMonthly(update());
     });
   }
 });
@@ -21,40 +21,31 @@ function getCurrentUIValues() { //use this in other functions rather than redecl
 
 // Get the inputs from the DOM.
 // Put some default values in the inputs
-// let principle = document.getElementById('loan-amount'); // best practice includes avoiding declaration of global variables in case a coworker might need the same thing for another function
-// let term = document.getElementById('loan-years');
-// let apr = document.getElementById('loan-rate');
+
 
 // Call a function to calculate the current monthly payment
 function setupIntialValues() {
-  // let principle = document.getElementById('loan-amount'); 
-  // let term = document.getElementById('loan-years');
-  // let apr = document.getElementById('loan-rate');
+  let principle = document.getElementById('loan-amount'); // best practice includes avoiding declaration of global variables in case a coworker might need the same thing for another function
+  let term = document.getElementById('loan-years');
+  let apr = document.getElementById('loan-rate');
   principle.value = 1000;
   term.value = 5;
-  apr.value = .05;
+  apr.value = 5;
   let obj = {
     amount: principle.value,
     years: term.value,
     rate: apr.value
   }
   calculateMonthlyPayment(obj);
+  updateMonthly(update());
 }
 
 // Get the current values from the UI
 // Update the monthly payment
 function update() {
-  // let principle = document.getElementById('loan-amount');
-  // let term = document.getElementById('loan-years');
-  // let apr = document.getElementById('loan-rate');
-  let obj = {
-    amount: principle.value,
-    years: term.value,
-    rate: apr.value
-  }
-  let payment = calculateMonthlyPayment(obj);
-  let monthly = document.getElementById('monthly-payment');
-  monthly.innerText = payment;
+  let obj = getCurrentUIValues();
+  let monthly = calculateMonthlyPayment(obj);
+  return monthly;
 }
 
 // Given an object of values (a value has amount, years and rate ),
@@ -75,4 +66,7 @@ function calculateMonthlyPayment(values) {
 // Given a string representing the monthly payment value,
 // update the UI to show the value.
 function updateMonthly(monthly) {
+  update();
+  let payment = document.getElementById('monthly-payment');
+  payment.innerText = `$${monthly}`;
 }
