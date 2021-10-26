@@ -10,4 +10,3 @@ describe ('calculateMonthlyPayment', function () {
     //TypeError: expect(...).toBeInstanceOf is not a function in file:///home/aaron/Documents/springboard/unit%207/jasmine-testing-exercises/calculator/calculator-test.js (line 9)
   });
 });
-
