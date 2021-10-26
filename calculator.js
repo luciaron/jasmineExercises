@@ -9,7 +9,9 @@ window.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-function getCurrentUIValues() {
+
+
+function getCurrentUIValues() { //use this in other functions rather than redeclaring the object
   return {
     amount: +(document.getElementById("loan-amount").value),
     years: +(document.getElementById("loan-years").value),
@@ -19,11 +21,15 @@ function getCurrentUIValues() {
 
 // Get the inputs from the DOM.
 // Put some default values in the inputs
+// let principle = document.getElementById('loan-amount'); // best practice includes avoiding declaration of global variables in case a coworker might need the same thing for another function
+// let term = document.getElementById('loan-years');
+// let apr = document.getElementById('loan-rate');
+
 // Call a function to calculate the current monthly payment
 function setupIntialValues() {
-  let principle = document.getElementById('loan-amount'); //not sure why it wouldn't let me declare these before the window listener - is that impossible? if i wanted to declare these outside of this function for use in the window listener, would i need to make another js file and have the script run before this one?
-  let term = document.getElementById('loan-years');
-  let apr = document.getElementById('loan-rate');
+  // let principle = document.getElementById('loan-amount'); 
+  // let term = document.getElementById('loan-years');
+  // let apr = document.getElementById('loan-rate');
   principle.value = 1000;
   term.value = 5;
   apr.value = .05;
@@ -38,9 +44,9 @@ function setupIntialValues() {
 // Get the current values from the UI
 // Update the monthly payment
 function update() {
-  let principle = document.getElementById('loan-amount'); //not sure why it wouldn't let me declare these before the window listener - is that impossible? if i wanted to declare these outside of this function for use in the window listener, would i need to make another js file and have the script run before this one?
-  let term = document.getElementById('loan-years');
-  let apr = document.getElementById('loan-rate');
+  // let principle = document.getElementById('loan-amount');
+  // let term = document.getElementById('loan-years');
+  // let apr = document.getElementById('loan-rate');
   let obj = {
     amount: principle.value,
     years: term.value,
